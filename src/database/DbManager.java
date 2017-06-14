@@ -1,12 +1,17 @@
 package database;
 
 public class DbManager {
-	public static Object retrieve(Class<?> c, String attribute, String value,
+	public static Object retrieveList(Class<?> c, String attribute, String value,
 			PhysicalDBImplementation DBImplementation) {
-		DBImplementation.retrieve(c, attribute, value);
+		DBImplementation.retrieveList(c, attribute, value);
 		return null;
 	}
 
+	public static Object retrieve(Class<?> c, String id, PhysicalDBImplementation DBImplementation) {
+		DBImplementation.retrieve(c, id);
+		return null;
+	}	
+	
 	public static void persist(Object object, PhysicalDBImplementation DBImplementation) {
 		DBImplementation.persist(object);
 	}

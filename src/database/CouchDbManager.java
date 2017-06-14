@@ -7,16 +7,19 @@ import javax.xml.xpath.XPathExpressionException;
 import org.ektorp.*;
 import org.ektorp.impl.*;
 import org.xml.sax.SAXException;
+
+import java.util.List;
+
 import org.ektorp.http.*;
 import xml.*;
 
 public class CouchDbManager implements PhysicalDBImplementation {
 
 	@Override
-	public Object retrieve(Class<?> c, String attribute, String value) {
+	public Object retrieve(Class<?> c, String id) {
 		try {
 			CouchDbConnector db = getConnector();
-			return db.get(c, value);
+			return db.get(c, id);
 		} catch (XPathExpressionException | ParserConfigurationException | SAXException | IOException e) {
 			e.printStackTrace();
 			return null;
@@ -62,5 +65,11 @@ public class CouchDbManager implements PhysicalDBImplementation {
 
 		CouchDbInstance dbInstance = new StdCouchDbInstance(authenticatedHttpClient);
 		return dbInstance.createConnector("my_first_database", true);
+	}
+
+	@Override
+	public List<Object> retrieveList(Class<?> c, String attribute, String value) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

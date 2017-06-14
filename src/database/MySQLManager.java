@@ -1,8 +1,11 @@
 package database;
+
 import org.hibernate.Session;  
 import org.hibernate.SessionFactory;  
 import org.hibernate.Transaction;  
-import org.hibernate.cfg.Configuration;  
+import org.hibernate.cfg.Configuration;
+
+import java.util.List;  
 
 public class MySQLManager implements PhysicalDBImplementation {
 	private static Configuration hibernateConfig;
@@ -13,15 +16,27 @@ public class MySQLManager implements PhysicalDBImplementation {
 	}
 	
 	@Override
-	public Object retrieve(Class<?> c, String attribute, String value) {
+	public Object retrieve(Class<?> c, String id) {
 	    Session session = getHibernateSession(); 
 	    Transaction transaction = session.beginTransaction();  			
-        Object obj = (Object)session.get(c, value);     
+        Object obj = (Object)session.get(c, id);     
 	    transaction.commit(); 
 	    session.close();	
 		return obj;
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Object> retrieveList(Class<?> c, String attribute, String value) {
+	    Session session = getHibernateSession(); 
+	    Transaction transaction = session.beginTransaction();  			
+	    List<Object> list = session.createQuery("FROM " + c.getName() + " SELECT * WHERE "
+	    										+ attribute + " = " + value + ";").list();   
+	    transaction.commit(); 
+	    session.close();	
+		return list; 
+	}	
+	
 	@Override
 	public void persist(Object object) {
 	    Session session = getHibernateSession(); 

@@ -2,9 +2,9 @@
 <config>
 	<db>
 		<couchdb>
-			<url></url>
-			<username></username>
-			<password></password>
+			<url>http://127.0.0.1:5984</url>
+			<username>admin</username>
+			<password>password</password>
 		</couchdb>
 	</db>
 </config>

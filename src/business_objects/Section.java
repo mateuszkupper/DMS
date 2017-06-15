@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 
-@Entity(name = "document")
+@Entity(name = "section")
 public class Section {
 	
 	@Id
@@ -22,6 +22,10 @@ public class Section {
     @MapsId
 	private Section previousVersion;
 	
+    public Section() {
+    	
+    }
+    
 	public Section(int id, String title, String couch_db_section_id,
 						Section previousVersion) {
 		this.id = id;

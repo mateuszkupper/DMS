@@ -1,18 +1,38 @@
 package database;
 
-import org.hibernate.Session;  
-import org.hibernate.SessionFactory;  
-import org.hibernate.Transaction;  
-import org.hibernate.cfg.Configuration;
+import java.util.List;
 
-import java.util.List;  
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.boot.Metadata;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+
+import business_objects.Document;
+import business_objects.Notification;
+import business_objects.Permission;
+import business_objects.Section;
+import business_objects.User;  
 
 public class MySQLManager implements PhysicalDBImplementation {
-	private static Configuration hibernateConfig;
+	private static StandardServiceRegistry standardRegistry;
+	private static Metadata metadata;
 	
 	static {
-	    hibernateConfig = new Configuration();  
-	    hibernateConfig.configure("hibernate.cfg.xml"); 
+		 standardRegistry = new StandardServiceRegistryBuilder()
+				 .configure("hibernate.cfg.xml")				 
+				 .build();
+		 metadata = new MetadataSources(standardRegistry)
+				 .addAnnotatedClass(Document.class)
+				 .addAnnotatedClass(Notification.class)
+				 .addAnnotatedClass(Section.class)
+				 .addAnnotatedClass(User.class)
+				 .getMetadataBuilder()
+				 .applyImplicitNamingStrategy(ImplicitNamingStrategyJpaCompliantImpl.INSTANCE )
+				 .build();
 	}
 	
 	@Override
@@ -65,7 +85,7 @@ public class MySQLManager implements PhysicalDBImplementation {
 	}
 	
 	private Session getHibernateSession() {
-	    SessionFactory factory = hibernateConfig.buildSessionFactory();  
-	    return factory.openSession();     		
+		SessionFactory sessionFactory = metadata.getSessionFactoryBuilder().build();
+	    return sessionFactory.openSession();     		
 	}
 }

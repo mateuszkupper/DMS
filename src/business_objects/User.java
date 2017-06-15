@@ -20,6 +20,10 @@ public class User {
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Permission> permissions;
 	
+	public User() {
+	
+	}
+	
 	public User(int id, String name, List<Permission> permissions) {
 		this.id = id;
 		this.name = name;

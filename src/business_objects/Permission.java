@@ -15,6 +15,10 @@ public class Permission {
     @MapsId	
 	private Document document;
 	
+    public Permission() {
+    	
+    }
+    
 	public Permission(int permissions, Document document) {
 		this.permissions = permissions;
 		this.setDocument(document);

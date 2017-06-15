@@ -27,6 +27,10 @@ public class Document {
 	@OneToMany(cascade = CascadeType.ALL)        
     private List<Section> sections;
     
+	public Document() {
+		
+	}
+	
     public Document(int id, String title, Document masterDocument,
     				List<Section> sections) {
     	this.id = id;

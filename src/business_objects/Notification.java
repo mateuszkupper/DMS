@@ -24,6 +24,10 @@ public class Notification {
 	@Column(name = "`details`")
 	private String details;
 	
+	public Notification() {
+		
+	}
+	
 	public Notification(int id, Section sectionMaster, Section sectionSlave, String details) {
 		this.id = id;
 		this.sectionMaster = sectionMaster;

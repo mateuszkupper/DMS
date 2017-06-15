@@ -1,6 +1,6 @@
 package business_objects;
 
-public class document {
+public class Document {
 	private int id;
 	private String title;
 	private int master_id;

@@ -1,6 +1,6 @@
 package business_objects;
 
-public class permission {
+public class Permission {
 	private int document_id;
 	private int user_id;
 	private int permissions;

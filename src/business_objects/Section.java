@@ -1,6 +1,6 @@
 package business_objects;
 
-public class section {
+public class Section {
 	private int id;
 	private String title;
 	private int document_id;

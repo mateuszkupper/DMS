@@ -1,6 +1,6 @@
 package business_objects;
 
-public class notification {
+public class Notification {
 	private int id;
 	private int section_master_id;
 	private int section_slave_id;

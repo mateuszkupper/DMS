@@ -1,24 +1,23 @@
 package business_objects;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
+
+@Entity(name = "notifications")
 public class Permission {
-	private int document_id;
-	private int user_id;
+
+	@Column(name = "`details`")
 	private int permissions;
 	
-	public int getDocument_id() {
-		return document_id;
-	}
+    @ManyToOne
+    @MapsId	
+	private Document document;
 	
-	public void setDocument_id(int document_id) {
-		this.document_id = document_id;
-	}
-	
-	public int getUser_id() {
-		return user_id;
-	}
-	
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
+	public Permission(int permissions, Document document) {
+		this.permissions = permissions;
+		this.setDocument(document);
 	}
 	
 	public int getPermissions() {
@@ -27,5 +26,13 @@ public class Permission {
 	
 	public void setPermissions(int permissions) {
 		this.permissions = permissions;
+	}
+
+	public Document getDocument() {
+		return document;
+	}
+
+	public void setDocument(Document document) {
+		this.document = document;
 	}	
 }

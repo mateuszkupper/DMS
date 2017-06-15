@@ -1,10 +1,35 @@
 package business_objects;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
+
+@Entity(name = "notifications")
 public class Notification {
+	
+	@Id @GeneratedValue
 	private int id;
-	private int section_master_id;
-	private int section_slave_id;
+	
+    @ManyToOne
+    @MapsId	
+	private Section sectionMaster;
+    
+    @ManyToOne
+    @MapsId	    
+	private Section sectionSlave;
+	
+	@Column(name = "`details`")
 	private String details;
+	
+	public Notification(int id, Section sectionMaster, Section sectionSlave, String details) {
+		this.id = id;
+		this.sectionMaster = sectionMaster;
+		this.sectionSlave = sectionSlave;
+		this.details = details;
+	}
 	
 	public int getId() {
 		return id;
@@ -14,20 +39,20 @@ public class Notification {
 		this.id = id;
 	}
 	
-	public int getSection_master_id() {
-		return section_master_id;
+	public Section getSectionMaster() {
+		return sectionMaster;
 	}
 	
-	public void setSection_master_id(int section_master_id) {
-		this.section_master_id = section_master_id;
+	public void setSectionMaster(Section sectionMaster) {
+		this.sectionMaster = sectionMaster;
 	}
 	
-	public int getSection_slave_id() {
-		return section_slave_id;
+	public Section getSectionSlave() {
+		return sectionSlave;
 	}
 	
-	public void setSection_slave_id(int section_slave_id) {
-		this.section_slave_id = section_slave_id;
+	public void setSectionSlave(Section sectionSlave) {
+		this.sectionSlave = sectionSlave;
 	}
 	
 	public String getDetails() {
@@ -36,5 +61,5 @@ public class Notification {
 	
 	public void setDetails(String details) {
 		this.details = details;
-	}	
+	}
 }

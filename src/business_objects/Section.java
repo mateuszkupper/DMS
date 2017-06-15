@@ -1,11 +1,34 @@
 package business_objects;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
+
+@Entity(name = "document")
 public class Section {
+	
+	@Id
 	private int id;
+	
+	@Column(name = "`title`")
 	private String title;
-	private int document_id;
-	private String couch_db_section_id;
-	private int previous_version_id;
+
+	@Column(name = "`couch_db_section_id`")
+	private String couch_db_section_id;	
+	
+    @ManyToOne
+    @MapsId
+	private Section previousVersion;
+	
+	public Section(int id, String title, String couch_db_section_id,
+						Section previousVersion) {
+		this.id = id;
+		this.title = title;
+		this.couch_db_section_id = couch_db_section_id;
+		this.previousVersion = previousVersion;
+	}
 	
 	public int getId() {
 		return id;
@@ -23,14 +46,6 @@ public class Section {
 		this.title = title;
 	}
 	
-	public int getDocument_id() {
-		return document_id;
-	}
-	
-	public void setDocument_id(int document_id) {
-		this.document_id = document_id;
-	}
-	
 	public String getCouch_db_section_id() {
 		return couch_db_section_id;
 	}
@@ -38,12 +53,12 @@ public class Section {
 	public void setCouch_db_section_id(String couch_db_section_id) {
 		this.couch_db_section_id = couch_db_section_id;
 	}
-	
-	public int getPrevious_version_id() {
-		return previous_version_id;
+
+	public Section getPreviousVersion() {
+		return previousVersion;
 	}
-	
-	public void setPrevious_version_id(int previous_version_id) {
-		this.previous_version_id = previous_version_id;
+
+	public void setPreviousVersion(Section previousVersion) {
+		this.previousVersion = previousVersion;
 	}	
 }

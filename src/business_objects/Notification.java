@@ -3,6 +3,7 @@ package business_objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
@@ -10,7 +11,8 @@ import javax.persistence.MapsId;
 @Entity(name = "notifications")
 public class Notification {
 	
-	@Id @GeneratedValue
+	@Id 
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
     @ManyToOne

@@ -8,7 +8,7 @@ import javax.persistence.MapsId;
 @Entity(name = "notifications")
 public class Permission {
 
-	@Column(name = "details")
+	@Column(name = "details")//TODO add pk
 	private int permissions;
 	
     @ManyToOne

@@ -7,6 +7,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -15,20 +16,22 @@ import javax.persistence.OneToMany;
 @Entity(name = "documents")
 public class Document {
 	
-	@Id @GeneratedValue
+	@Id
+	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	@Column(name = "title")
 	private String title;
 	
-	@ManyToOne(cascade={CascadeType.ALL})
+	@ManyToOne(targetEntity=Document.class)
 	@JoinColumn(name="master_id")
 	private Document masterDocument;
 	
-	@OneToMany(mappedBy="masterDocument", cascade={CascadeType.ALL})       
+	@OneToMany(mappedBy="masterDocument", targetEntity=Document.class)       
     private List<Document> slaveDocuments = new ArrayList<Document>();
 	
-	@OneToMany(cascade={CascadeType.ALL})        
+	@OneToMany(cascade={CascadeType.ALL}, targetEntity=Section.class, mappedBy="document")        
     private List<Section> sections;
     
 	public Document() {

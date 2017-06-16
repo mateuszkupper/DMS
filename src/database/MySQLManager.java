@@ -2,14 +2,19 @@ package database;
 
 import java.util.List;
 
+import javax.persistence.Entity;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.annotations.Table;
 import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+
+import com.mysql.cj.core.util.StringUtils;
 
 import business_objects.Document;
 import business_objects.Notification;
@@ -33,7 +38,7 @@ public class MySQLManager implements PhysicalDBImplementation {
 	}
 	
 	@Override
-	public Object retrieve(Class<?> c, String id) {
+	public Object retrieve(Class<?> c, int id) {
 	    Session session = getHibernateSession(); 
 	    Transaction transaction = session.beginTransaction();  			
         Object obj = (Object)session.get(c, id);     
@@ -46,9 +51,16 @@ public class MySQLManager implements PhysicalDBImplementation {
 	@Override
 	public List<Object> retrieveList(Class<?> c, String attribute, String value) {
 	    Session session = getHibernateSession(); 
-	    Transaction transaction = session.beginTransaction();  			
-	    List<Object> list = session.createQuery("FROM " + c.getName() + " SELECT * WHERE "
-	    										+ attribute + " = " + value + ";").list();   
+	    Transaction transaction = session.beginTransaction();
+	    
+	    boolean isValueNotNumeric = !StringUtils.isStrictlyNumeric(value);
+	    if(isValueNotNumeric) {
+	    	value = "'" + value + "'";
+	    }
+	    Entity entity = c.getAnnotation(Entity.class);
+	    String tableName = entity.name();
+	    List<Object> list = session.createQuery("FROM " + tableName +
+	    										" WHERE " + attribute + " = " + value).list();   
 	    transaction.commit(); 
 	    session.close();	
 		return list; 
@@ -58,7 +70,7 @@ public class MySQLManager implements PhysicalDBImplementation {
 	public void persist(Object object) {
 	    Session session = getHibernateSession(); 
 	    Transaction transaction = session.beginTransaction();        
-	    session.persist(object);        
+	    session.merge(object);        
 	    transaction.commit(); 
 	    session.close();  		
 	}

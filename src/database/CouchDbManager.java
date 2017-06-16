@@ -16,10 +16,10 @@ import xml.*;
 public class CouchDbManager implements PhysicalDBImplementation {
 
 	@Override
-	public Object retrieve(Class<?> c, String id) {
+	public Object retrieve(Class<?> c, int id) {
 		try {
 			CouchDbConnector db = getConnector();
-			return db.get(c, id);
+			return db.get(c, String.valueOf(id));
 		} catch (XPathExpressionException | ParserConfigurationException | SAXException | IOException e) {
 			e.printStackTrace();
 			return null;

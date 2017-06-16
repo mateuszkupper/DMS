@@ -13,7 +13,6 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import business_objects.Document;
 import business_objects.Notification;
-import business_objects.Permission;
 import business_objects.Section;
 import business_objects.User;  
 
@@ -27,9 +26,7 @@ public class MySQLManager implements PhysicalDBImplementation {
 				 .build();
 		 metadata = new MetadataSources(standardRegistry)
 				 .addAnnotatedClass(Document.class)
-				 .addAnnotatedClass(Notification.class)
 				 .addAnnotatedClass(Section.class)
-				 .addAnnotatedClass(User.class)
 				 .getMetadataBuilder()
 				 .applyImplicitNamingStrategy(ImplicitNamingStrategyJpaCompliantImpl.INSTANCE )
 				 .build();

@@ -2,24 +2,23 @@ package business_objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
 
-@Entity(name = "section")
+@Entity(name = "sections")
 public class Section {
 	
-	@Id
+	@Id @GeneratedValue
 	private int id;
 	
-	@Column(name = "`title`")
+	@Column(name = "title")
 	private String title;
 
-	@Column(name = "`couch_db_section_id`")
+	@Column(name = "couch_db_section_id")
 	private String couch_db_section_id;	
 	
-    @ManyToOne
-    @MapsId
+    @OneToOne
 	private Section previousVersion;
 	
     public Section() {

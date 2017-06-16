@@ -5,16 +5,17 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-@Entity(name = "user")
+@Entity(name = "users")
 public class User {
 	
-	@Id
+	@Id @GeneratedValue
 	private int id;
 	
-	@Column(name = "`name`")
+	@Column(name = "name")
 	private String name;
 	
 	@OneToMany(cascade = CascadeType.ALL)

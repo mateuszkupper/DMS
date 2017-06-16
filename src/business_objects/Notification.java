@@ -21,7 +21,7 @@ public class Notification {
     @MapsId	    
 	private Section sectionSlave;
 	
-	@Column(name = "`details`")
+	@Column(name = "details")
 	private String details;
 	
 	public Notification() {

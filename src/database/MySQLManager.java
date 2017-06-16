@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.annotations.Table;
 import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl;
@@ -17,9 +16,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import com.mysql.cj.core.util.StringUtils;
 
 import business_objects.Document;
-import business_objects.Notification;
-import business_objects.Section;
-import business_objects.User;  
+import business_objects.Section;  
 
 public class MySQLManager implements PhysicalDBImplementation {
 	private static StandardServiceRegistry standardRegistry;

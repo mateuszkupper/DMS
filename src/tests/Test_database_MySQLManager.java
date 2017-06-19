@@ -5,6 +5,7 @@ import java.util.List;
 
 import business_objects.Document;
 import business_objects.Notification;
+import business_objects.Permission;
 import business_objects.Section;
 import business_objects.User;
 import database.DbManager;
@@ -13,7 +14,7 @@ import database.MySQLManager;
 public class Test_database_MySQLManager {
 
 	public static void main(String[] args) {
-		testNotification();
+		testPermission();
 	}
 	
 	private static void testDocument() {
@@ -95,6 +96,22 @@ public class Test_database_MySQLManager {
 	}
 	
 	private static void testPermission() {
-		
+		Permission permission = new Permission();
+		MySQLManager mysqlManager = new MySQLManager();
+		permission = (Permission)DbManager.retrieve(permission.getClass(), 3, mysqlManager);
+		System.out.println(permission.getPermissions());
+		System.out.println(permission.getDocument().getTitle());
+		Permission permnew = new Permission();
+		permnew.setPermissions(29);
+		permnew.setDocument(permission.getDocument());
+		permnew.setUser(permission.getUser());
+		DbManager.persist(permnew, mysqlManager);
+		permission.setPermissions(30);
+		DbManager.update(permission, mysqlManager);
+		List<Permission> list = (List<Permission>)DbManager.retrieveList(permnew.getClass(), "permissions", "7", mysqlManager);
+		for(Permission secr : list) {
+			System.out.println(secr.getPermissions());
+		}
+		DbManager.delete(permission, mysqlManager);
 	}
 }

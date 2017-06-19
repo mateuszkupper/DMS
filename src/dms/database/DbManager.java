@@ -1,4 +1,4 @@
-package database;
+package dms.database;
 
 public class DbManager {
 	public static Object retrieveList(Class<?> c, String attribute, String value,

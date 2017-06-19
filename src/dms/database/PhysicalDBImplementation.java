@@ -1,4 +1,4 @@
-package database;
+package dms.database;
 
 import java.util.List;
 

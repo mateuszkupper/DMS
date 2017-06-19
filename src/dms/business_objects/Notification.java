@@ -1,4 +1,4 @@
-package business_objects;
+package dms.business_objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

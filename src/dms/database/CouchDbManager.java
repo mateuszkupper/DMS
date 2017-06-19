@@ -1,4 +1,4 @@
-package database;
+package dms.database;
 
 import java.io.IOException;
 
@@ -9,10 +9,11 @@ import org.ektorp.*;
 import org.ektorp.impl.*;
 import org.xml.sax.SAXException;
 
+import dms.xml.*;
+
 import java.util.List;
 
 import org.ektorp.http.*;
-import xml.*;
 
 public class CouchDbManager implements PhysicalDBImplementation {
 

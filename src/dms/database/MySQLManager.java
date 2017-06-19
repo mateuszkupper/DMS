@@ -1,4 +1,4 @@
-package database;
+package dms.database;
 
 import java.util.List;
 
@@ -15,11 +15,11 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import com.mysql.cj.core.util.StringUtils;
 
-import business_objects.Document;
-import business_objects.Notification;
-import business_objects.Permission;
-import business_objects.Section;
-import business_objects.User;
+import dms.business_objects.Document;
+import dms.business_objects.Notification;
+import dms.business_objects.Permission;
+import dms.business_objects.Section;
+import dms.business_objects.User;
 
 public class MySQLManager implements PhysicalDBImplementation {
 	private static StandardServiceRegistry standardRegistry;

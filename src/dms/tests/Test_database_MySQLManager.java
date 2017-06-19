@@ -1,15 +1,15 @@
-package tests;
+package dms.tests;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import business_objects.Document;
-import business_objects.Notification;
-import business_objects.Permission;
-import business_objects.Section;
-import business_objects.User;
-import database.DbManager;
-import database.MySQLManager;
+import dms.business_objects.Document;
+import dms.business_objects.Notification;
+import dms.business_objects.Permission;
+import dms.business_objects.Section;
+import dms.business_objects.User;
+import dms.database.DbManager;
+import dms.database.MySQLManager;
 
 public class Test_database_MySQLManager {
 

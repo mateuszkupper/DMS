@@ -1,4 +1,4 @@
-package database;
+package dms.database;
 
 public class SectionCouchDBImplementation {
 

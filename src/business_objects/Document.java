@@ -33,18 +33,22 @@ public class Document {
 	
 	@OneToMany(cascade={CascadeType.ALL}, targetEntity=Section.class, mappedBy="document")        
     private List<Section> sections;
-    
+
+	@OneToMany(cascade={CascadeType.ALL}, targetEntity=Permission.class, mappedBy="document")        
+    private List<Permission> permissions;	
+	
 	public Document() {
 		
 	}
 	
-    public Document(int id, String title, Document masterDocument,
-    				List<Section> sections, List<Document> slaveDocuments) {
+    public Document(int id, String title, Document masterDocument, List<Permission> permissions,
+     				List<Section> sections, List<Document> slaveDocuments) {
     	this.id = id;
     	this.title = title;
     	this.masterDocument = masterDocument;
     	this.sections = sections;
     	this.slaveDocuments = slaveDocuments;
+    	this.permissions = permissions;
     }
     
 	public int getId() {
@@ -85,5 +89,13 @@ public class Document {
 
 	public void setSlaveDocuments(List<Document> slaveDocuments) {
 		this.slaveDocuments = slaveDocuments;
+	}
+
+	public List<Permission> getPermissions() {
+		return permissions;
+	}
+
+	public void setPermissions(List<Permission> permissions) {
+		this.permissions = permissions;
 	}
 }

@@ -3,6 +3,7 @@ package business_objects;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -35,12 +36,19 @@ public class Section {
 	
 	@ManyToOne(targetEntity=Document.class)
 	private Document document;    
-    
+
+	@OneToMany(cascade={CascadeType.ALL}, targetEntity=Section.class, mappedBy="sectionSlave")        
+    private List<Notification> notificationsForSlaveSections;
+	
+	@OneToMany(cascade={CascadeType.ALL}, targetEntity=Section.class, mappedBy="sectionMaster")        
+    private List<Notification> notificationsForMasterSections;	
+	
     public Section() {
     	
     }
     
 	public Section(int id, String title, String couch_db_section_id,
+						List<Notification> notificationsForSlaveSections, List<Notification> notificationsForMasterSections,
 						Section previousVersion, Document document, List<Section> subsequentVersions) {
 		this.id = id;
 		this.title = title;
@@ -48,6 +56,8 @@ public class Section {
 		this.previousVersion = previousVersion;
 		this.document = document;
 		this.subsequentVersions = subsequentVersions;
+		this.notificationsForMasterSections = notificationsForMasterSections;
+		this.notificationsForSlaveSections = notificationsForSlaveSections;
 	}
 	
 	public int getId() {
@@ -96,5 +106,21 @@ public class Section {
 
 	public void setSubsequentVersions(List<Section> subsequentVersions) {
 		this.subsequentVersions = subsequentVersions;
+	}
+
+	public List<Notification> getNotificationsForSlaveSections() {
+		return notificationsForSlaveSections;
+	}
+
+	public void setNotificationsForSlaveSections(List<Notification> notificationsForSlaveSections) {
+		this.notificationsForSlaveSections = notificationsForSlaveSections;
+	}
+
+	public List<Notification> getNotificationsForMasterSections() {
+		return notificationsForMasterSections;
+	}
+
+	public void setNotificationsForMasterSections(List<Notification> notificationsForMasterSections) {
+		this.notificationsForMasterSections = notificationsForMasterSections;
 	}	
 }

@@ -13,14 +13,15 @@ import javax.persistence.OneToMany;
 @Entity(name = "users")
 public class User {
 	
-	@Id 
+	@Id
+	@Column(name="id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	@Column(name = "name")
 	private String name;
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade={CascadeType.ALL}, targetEntity=Permission.class, mappedBy="user")   
 	private List<Permission> permissions;
 	
 	public User() {

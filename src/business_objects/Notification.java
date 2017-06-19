@@ -11,16 +11,15 @@ import javax.persistence.MapsId;
 @Entity(name = "notifications")
 public class Notification {
 	
-	@Id 
+	@Id
+	@Column(name="id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-    @ManyToOne
-    @MapsId	
+	@ManyToOne(targetEntity=Section.class)
 	private Section sectionMaster;
     
-    @ManyToOne
-    @MapsId	    
+	@ManyToOne(targetEntity=Section.class)	    
 	private Section sectionSlave;
 	
 	@Column(name = "details")

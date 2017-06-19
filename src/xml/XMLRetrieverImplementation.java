@@ -1,4 +1,4 @@
-package dms.xml;
+package xml;
 
 public interface XMLRetrieverImplementation {
 

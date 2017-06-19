@@ -1,4 +1,5 @@
 package database;
+
 import java.io.IOException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -23,17 +24,17 @@ public class CouchDbManager implements PhysicalDBImplementation {
 		} catch (XPathExpressionException | ParserConfigurationException | SAXException | IOException e) {
 			e.printStackTrace();
 			return null;
-		}	
+		}
 	}
 
 	@Override
-	public void persist(Object object) {	
+	public void persist(Object object) {
 		try {
 			CouchDbConnector db = getConnector();
 			db.create(object);
 		} catch (XPathExpressionException | ParserConfigurationException | SAXException | IOException e) {
 			e.printStackTrace();
-		}			
+		}
 	}
 
 	@Override
@@ -55,13 +56,13 @@ public class CouchDbManager implements PhysicalDBImplementation {
 			e.printStackTrace();
 		}
 	}
-	
-	private CouchDbConnector getConnector() throws XPathExpressionException, ParserConfigurationException, SAXException, IOException {
+
+	private CouchDbConnector getConnector()
+			throws XPathExpressionException, ParserConfigurationException, SAXException, IOException {
 		HttpClient authenticatedHttpClient = new StdHttpClient.Builder()
-		        .url(XMLRetriever.getValueByXPath("/config/db/couchdb/url"))
-		        .username(XMLRetriever.getValueByXPath("/config/db/couchdb/username"))
-		        .password(XMLRetriever.getValueByXPath("/config/db/couchdb/password"))
-		        .build();
+				.url(XMLRetriever.getValueByXPath("/config/db/couchdb/url"))
+				.username(XMLRetriever.getValueByXPath("/config/db/couchdb/username"))
+				.password(XMLRetriever.getValueByXPath("/config/db/couchdb/password")).build();
 
 		CouchDbInstance dbInstance = new StdCouchDbInstance(authenticatedHttpClient);
 		return dbInstance.createConnector("my_first_database", true);

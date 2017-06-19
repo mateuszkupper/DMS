@@ -34,8 +34,8 @@ public class Document {
 	@OneToMany(cascade={CascadeType.ALL}, targetEntity=Section.class, mappedBy="document")        
     private List<Section> sections;
 
-	@OneToMany(cascade={CascadeType.ALL}, targetEntity=Permission.class, mappedBy="document")        
-    private List<Permission> permissions;	
+	@OneToMany(cascade = { CascadeType.ALL }, targetEntity = Permission.class, mappedBy = "document")
+	private List<Permission> permissions;	
 	
 	public Document() {
 		

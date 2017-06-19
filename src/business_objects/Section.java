@@ -15,41 +15,41 @@ import javax.persistence.OneToMany;
 
 @Entity(name = "sections")
 public class Section {
-	
-	@Id	
+
+	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	@Column(name = "title")
 	private String title;
 
 	@Column(name = "couch_db_section_id")
-	private String couch_db_section_id;	
-	
-	@ManyToOne(targetEntity=Section.class)
-	@JoinColumn(name="previous_version_id")
+	private String couch_db_section_id;
+
+	@ManyToOne(targetEntity = Section.class)
+	@JoinColumn(name = "previous_version_id")
 	private Section previousVersion;
 
-	@OneToMany(mappedBy="previousVersion", targetEntity=Section.class)       
-    private List<Section> subsequentVersions = new ArrayList<Section>();	
-	
-	@ManyToOne(targetEntity=Document.class)
-	private Document document;    
+	@OneToMany(mappedBy = "previousVersion", targetEntity = Section.class)
+	private List<Section> subsequentVersions = new ArrayList<Section>();
 
-	@OneToMany(cascade={CascadeType.ALL}, targetEntity=Section.class, mappedBy="sectionSlave")        
-    private List<Notification> notificationsForSlaveSections;
-	
-	@OneToMany(cascade={CascadeType.ALL}, targetEntity=Section.class, mappedBy="sectionMaster")        
-    private List<Notification> notificationsForMasterSections;	
-	
-    public Section() {
-    	
-    }
-    
-	public Section(int id, String title, String couch_db_section_id,
-						List<Notification> notificationsForSlaveSections, List<Notification> notificationsForMasterSections,
-						Section previousVersion, Document document, List<Section> subsequentVersions) {
+	@ManyToOne(targetEntity = Document.class)
+	private Document document;
+
+	@OneToMany(cascade = { CascadeType.ALL }, targetEntity = Section.class, mappedBy = "sectionSlave")
+	private List<Notification> notificationsForSlaveSections;
+
+	@OneToMany(cascade = { CascadeType.ALL }, targetEntity = Section.class, mappedBy = "sectionMaster")
+	private List<Notification> notificationsForMasterSections;
+
+	public Section() {
+
+	}
+
+	public Section(int id, String title, String couch_db_section_id, List<Notification> notificationsForSlaveSections,
+			List<Notification> notificationsForMasterSections, Section previousVersion, Document document,
+			List<Section> subsequentVersions) {
 		this.id = id;
 		this.title = title;
 		this.couch_db_section_id = couch_db_section_id;
@@ -59,27 +59,27 @@ public class Section {
 		this.notificationsForMasterSections = notificationsForMasterSections;
 		this.notificationsForSlaveSections = notificationsForSlaveSections;
 	}
-	
+
 	public int getId() {
 		return id;
 	}
-	
+
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
 	public String getTitle() {
 		return title;
 	}
-	
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	
+
 	public String getCouch_db_section_id() {
 		return couch_db_section_id;
 	}
-	
+
 	public void setCouch_db_section_id(String couch_db_section_id) {
 		this.couch_db_section_id = couch_db_section_id;
 	}
@@ -122,5 +122,5 @@ public class Section {
 
 	public void setNotificationsForMasterSections(List<Notification> notificationsForMasterSections) {
 		this.notificationsForMasterSections = notificationsForMasterSections;
-	}	
+	}
 }

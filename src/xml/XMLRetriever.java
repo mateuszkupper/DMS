@@ -18,13 +18,11 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-
-
 public class XMLRetriever {
-	public static String getValueByXPath(String xpathString) throws ParserConfigurationException, 
-															SAXException, IOException, XPathExpressionException {
+	public static String getValueByXPath(String xpathString)
+			throws ParserConfigurationException, SAXException, IOException, XPathExpressionException {
 		try {
-			Document doc = loadXMLFile();		
+			Document doc = loadXMLFile();
 			XPathFactory xPathfactory = XPathFactory.newInstance();
 			XPath xpath = xPathfactory.newXPath();
 			XPathExpression expr = xpath.compile(xpathString);
@@ -32,11 +30,11 @@ public class XMLRetriever {
 			Node nNode = nList.item(0);
 			Element element = (Element) nNode;
 			return element.getTextContent();
-		} catch(XPathExpressionException e) {
+		} catch (XPathExpressionException e) {
 			throw new XPathExpressionException("XPath Exception");
 		}
 	}
-	
+
 	public static Document loadXMLFile() throws ParserConfigurationException, SAXException, IOException {
 		try {
 			File fXmlFile = new File("src/config.xml");
@@ -49,6 +47,6 @@ public class XMLRetriever {
 		} catch (ParserConfigurationException e) {
 			e.printStackTrace();
 			throw new ParserConfigurationException();
-		}		
+		}
 	}
 }

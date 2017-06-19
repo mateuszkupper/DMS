@@ -13,34 +13,34 @@ import javax.persistence.MapsId;
 public class Permission {
 
 	@Id
-	@Column(name="id")
+	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	@Column(name = "details")
 	private int permissions;
-	
-	@ManyToOne(targetEntity=Document.class)
+
+	@ManyToOne(targetEntity = Document.class)
 	private Document document;
-	
-	@ManyToOne(targetEntity=User.class)
+
+	@ManyToOne(targetEntity = User.class)
 	private User user;
-	
-    public Permission() {
-    	
-    }
-    
+
+	public Permission() {
+
+	}
+
 	public Permission(int id, int permissions, Document document, User user) {
 		this.permissions = permissions;
 		this.document = document;
 		this.id = id;
 		this.user = user;
 	}
-	
+
 	public int getPermissions() {
 		return permissions;
 	}
-	
+
 	public void setPermissions(int permissions) {
 		this.permissions = permissions;
 	}
@@ -67,5 +67,5 @@ public class Permission {
 
 	public void setUser(User user) {
 		this.user = user;
-	}	
+	}
 }

@@ -6,10 +6,10 @@ public class DbManager {
 		return DBImplementation.retrieveList(c, attribute, value);
 	}
 
-	public static Object retrieve(Class<?> c, int id, PhysicalDBImplementation DBImplementation) {		
+	public static Object retrieve(Class<?> c, int id, PhysicalDBImplementation DBImplementation) {
 		return DBImplementation.retrieve(c, id);
-	}	
-	
+	}
+
 	public static void persist(Object object, PhysicalDBImplementation DBImplementation) {
 		DBImplementation.persist(object);
 	}
@@ -21,5 +21,5 @@ public class DbManager {
 	public static void delete(Object object, PhysicalDBImplementation DBImplementation) {
 		DBImplementation.delete(object);
 	}
-	
+
 }

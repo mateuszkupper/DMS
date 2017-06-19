@@ -39,10 +39,11 @@ CREATE TABLE `users` (
 );
 
 CREATE TABLE `users_documents` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `document_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `permissions` int(11) DEFAULT NULL,
-  PRIMARY KEY (`document_id`,`user_id`),
+  PRIMARY KEY (`id`),
   KEY `fk_user` (`user_id`),
   CONSTRAINT `fk_documents` FOREIGN KEY (`document_id`) REFERENCES `documents` (`id`),
   CONSTRAINT `fk_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)

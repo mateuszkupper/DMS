@@ -37,10 +37,10 @@ public class Section {
 	@ManyToOne(targetEntity = Document.class)
 	private Document document;
 
-	@OneToMany(cascade = { CascadeType.ALL }, targetEntity = Section.class, mappedBy = "sectionSlave")
+	@OneToMany(cascade = { CascadeType.ALL }, targetEntity = Notification.class, mappedBy = "sectionSlave")
 	private List<Notification> notificationsForSlaveSections;
 
-	@OneToMany(cascade = { CascadeType.ALL }, targetEntity = Section.class, mappedBy = "sectionMaster")
+	@OneToMany(cascade = { CascadeType.ALL }, targetEntity = Notification.class, mappedBy = "sectionMaster")
 	private List<Notification> notificationsForMasterSections;
 
 	public Section() {

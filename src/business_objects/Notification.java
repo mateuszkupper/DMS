@@ -5,8 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
 
 @Entity(name = "notifications")
 public class Notification {
@@ -17,9 +17,11 @@ public class Notification {
 	private int id;
 
 	@ManyToOne(targetEntity = Section.class)
+	@JoinColumn(name = "section_master_id")
 	private Section sectionMaster;
 
 	@ManyToOne(targetEntity = Section.class)
+	@JoinColumn(name = "section_slave_id")
 	private Section sectionSlave;
 
 	@Column(name = "details")

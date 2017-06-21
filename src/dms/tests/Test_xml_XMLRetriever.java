@@ -8,7 +8,7 @@ import javax.xml.xpath.XPathExpressionException;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
-import xml.XMLRetriever;
+import dms.xml.XMLRetriever;
 
 public class Test_xml_XMLRetriever {
 

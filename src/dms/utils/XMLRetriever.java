@@ -1,4 +1,4 @@
-package dms.xml;
+package dms.utils;
 
 import java.io.File;
 import java.io.IOException;

@@ -20,6 +20,7 @@ import dms.business_objects.Notification;
 import dms.business_objects.Permission;
 import dms.business_objects.Section;
 import dms.business_objects.User;
+import dms.utils.DataSanitizer;
 
 public class MySQLManager implements PhysicalDBImplementation {
 	private static StandardServiceRegistry standardRegistry;
@@ -52,7 +53,8 @@ public class MySQLManager implements PhysicalDBImplementation {
 	public List<Object> retrieveList(Class<?> c, String attribute, String value) {
 		Session session = getHibernateSession();
 		Transaction transaction = session.beginTransaction();
-
+		attribute = DataSanitizer.sanitizeString(attribute);
+		value = DataSanitizer.sanitizeString(value);
 		boolean isValueNotNumeric = !StringUtils.isStrictlyNumeric(value);
 		if (isValueNotNumeric) {
 			value = "'" + value + "'";

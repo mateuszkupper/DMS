@@ -9,7 +9,7 @@ import org.ektorp.*;
 import org.ektorp.impl.*;
 import org.xml.sax.SAXException;
 
-import dms.xml.*;
+import dms.utils.*;
 
 import java.util.List;
 

@@ -6,12 +6,16 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity(name = "documents")
 public class Document {
@@ -25,16 +29,20 @@ public class Document {
 	private String title;
 	
 	@ManyToOne(targetEntity=Document.class)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@JoinColumn(name="master_id")
 	private Document masterDocument;
-	
-	@OneToMany(mappedBy="masterDocument", targetEntity=Document.class)       
+
+	@OneToMany(mappedBy="masterDocument", targetEntity=Document.class)
+	@LazyCollection(LazyCollectionOption.FALSE)
     private List<Document> slaveDocuments = new ArrayList<Document>();
-	
-	@OneToMany(cascade={CascadeType.ALL}, targetEntity=Section.class, mappedBy="document")        
+
+	@OneToMany(cascade={CascadeType.ALL}, targetEntity=Section.class, mappedBy="document")
+	@LazyCollection(LazyCollectionOption.FALSE)
     private List<Section> sections;
 
 	@OneToMany(cascade = { CascadeType.ALL }, targetEntity = Permission.class, mappedBy = "document")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Permission> permissions;	
 	
 	public Document() {

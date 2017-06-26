@@ -21,5 +21,8 @@ public class DbManager {
 	public static void delete(Object object, PhysicalDBImplementation DBImplementation) {
 		DBImplementation.delete(object);
 	}
-
+	
+	public static Object retrieveAll(Class<?> c, PhysicalDBImplementation DBImplementation) {
+		return DBImplementation.retrieveAll(c);
+	}
 }

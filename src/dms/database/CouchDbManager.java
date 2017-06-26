@@ -74,4 +74,10 @@ public class CouchDbManager implements PhysicalDBImplementation {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public List<Object> retrieveAll(Class<?> c) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

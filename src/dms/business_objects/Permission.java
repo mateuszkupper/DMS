@@ -7,6 +7,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 @Entity(name = "users_documents")
 public class Permission {
 
@@ -19,9 +22,11 @@ public class Permission {
 	private int permissions;
 
 	@ManyToOne(targetEntity = Document.class)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private Document document;
 
 	@ManyToOne(targetEntity = User.class)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private User user;
 
 	public Permission() {

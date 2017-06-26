@@ -1,6 +1,6 @@
 package dms.business_objects;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -9,6 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity(name = "users")
 public class User {
@@ -22,13 +25,14 @@ public class User {
 	private String name;
 
 	@OneToMany(cascade = { CascadeType.ALL }, targetEntity = Permission.class, mappedBy = "user")
-	private List<Permission> permissions;
+	@LazyCollection(LazyCollectionOption.FALSE)
+	private Set<Permission> permissions;
 
 	public User() {
 
 	}
 
-	public User(int id, String name, List<Permission> permissions) {
+	public User(int id, String name, Set<Permission> permissions) {
 		this.id = id;
 		this.name = name;
 		this.permissions = permissions;
@@ -50,11 +54,11 @@ public class User {
 		this.name = name;
 	}
 
-	public List<Permission> getPermissions() {
+	public Set<Permission> getPermissions() {
 		return permissions;
 	}
 
-	public void setPermissions(List<Permission> permissions) {
+	public void setPermissions(Set<Permission> permissions) {
 		this.permissions = permissions;
 	}
 }

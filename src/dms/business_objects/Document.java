@@ -1,12 +1,10 @@
 package dms.business_objects;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,6 +14,8 @@ import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity(name = "documents")
 public class Document {
@@ -28,29 +28,33 @@ public class Document {
 	@Column(name = "title")
 	private String title;
 	
+	@JsonIgnore
 	@ManyToOne(targetEntity=Document.class)
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@JoinColumn(name="master_id")
 	private Document masterDocument;
 
+	@JsonIgnore
 	@OneToMany(mappedBy="masterDocument", targetEntity=Document.class)
 	@LazyCollection(LazyCollectionOption.FALSE)
-    private List<Document> slaveDocuments = new ArrayList<Document>();
+    private Set<Document> slaveDocuments;
 
+	@JsonIgnore
 	@OneToMany(cascade={CascadeType.ALL}, targetEntity=Section.class, mappedBy="document")
 	@LazyCollection(LazyCollectionOption.FALSE)
-    private List<Section> sections;
+    private Set<Section> sections;
 
+	@JsonIgnore
 	@OneToMany(cascade = { CascadeType.ALL }, targetEntity = Permission.class, mappedBy = "document")
 	@LazyCollection(LazyCollectionOption.FALSE)
-	private List<Permission> permissions;	
+	private Set<Permission> permissions;	
 	
 	public Document() {
 		
 	}
 	
-    public Document(int id, String title, Document masterDocument, List<Permission> permissions,
-     				List<Section> sections, List<Document> slaveDocuments) {
+    public Document(int id, String title, Document masterDocument, Set<Permission> permissions,
+     				Set<Section> sections, Set<Document> slaveDocuments) {
     	this.id = id;
     	this.title = title;
     	this.masterDocument = masterDocument;
@@ -83,27 +87,27 @@ public class Document {
 		return this.masterDocument = masterDocument;
 	}
 
-	public List<Section> getSections() {
+	public Set<Section> getSections() {
 		return sections;
 	}
 
-	public void setSections(List<Section> sections) {
+	public void setSections(Set<Section> sections) {
 		this.sections = sections;
 	}
 
-	public List<Document> getSlaveDocuments() {
+	public Set<Document> getSlaveDocuments() {
 		return slaveDocuments;
 	}
 
-	public void setSlaveDocuments(List<Document> slaveDocuments) {
+	public void setSlaveDocuments(Set<Document> slaveDocuments) {
 		this.slaveDocuments = slaveDocuments;
 	}
 
-	public List<Permission> getPermissions() {
+	public Set<Permission> getPermissions() {
 		return permissions;
 	}
 
-	public void setPermissions(List<Permission> permissions) {
+	public void setPermissions(Set<Permission> permissions) {
 		this.permissions = permissions;
 	}
 }

@@ -1,7 +1,7 @@
 package dms.business_objects;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,6 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity(name = "sections")
 public class Section {
@@ -29,27 +32,32 @@ public class Section {
 
 	@ManyToOne(targetEntity = Section.class)
 	@JoinColumn(name = "previous_version_id")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private Section previousVersion;
 
 	@OneToMany(mappedBy = "previousVersion", targetEntity = Section.class)
-	private List<Section> subsequentVersions = new ArrayList<Section>();
+	@LazyCollection(LazyCollectionOption.FALSE)
+	private Set<Section> subsequentVersions;
 
 	@ManyToOne(targetEntity = Document.class)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private Document document;
 
 	@OneToMany(cascade = { CascadeType.ALL }, targetEntity = Notification.class, mappedBy = "sectionSlave")
-	private List<Notification> notificationsForSlaveSections;
+	@LazyCollection(LazyCollectionOption.FALSE)
+	private Set<Notification> notificationsForSlaveSections;
 
 	@OneToMany(cascade = { CascadeType.ALL }, targetEntity = Notification.class, mappedBy = "sectionMaster")
-	private List<Notification> notificationsForMasterSections;
+	@LazyCollection(LazyCollectionOption.FALSE)
+	private Set<Notification> notificationsForMasterSections;
 
 	public Section() {
 
 	}
 
-	public Section(int id, String title, String couch_db_section_id, List<Notification> notificationsForSlaveSections,
-			List<Notification> notificationsForMasterSections, Section previousVersion, Document document,
-			List<Section> subsequentVersions) {
+	public Section(int id, String title, String couch_db_section_id, Set<Notification> notificationsForSlaveSections,
+			Set<Notification> notificationsForMasterSections, Section previousVersion, Document document,
+			Set<Section> subsequentVersions) {
 		this.id = id;
 		this.title = title;
 		this.couch_db_section_id = couch_db_section_id;
@@ -100,27 +108,27 @@ public class Section {
 		this.document = document;
 	}
 
-	public List<Section> getSubsequentVersions() {
+	public Set<Section> getSubsequentVersions() {
 		return subsequentVersions;
 	}
 
-	public void setSubsequentVersions(List<Section> subsequentVersions) {
+	public void setSubsequentVersions(Set<Section> subsequentVersions) {
 		this.subsequentVersions = subsequentVersions;
 	}
 
-	public List<Notification> getNotificationsForSlaveSections() {
+	public Set<Notification> getNotificationsForSlaveSections() {
 		return notificationsForSlaveSections;
 	}
 
-	public void setNotificationsForSlaveSections(List<Notification> notificationsForSlaveSections) {
+	public void setNotificationsForSlaveSections(Set<Notification> notificationsForSlaveSections) {
 		this.notificationsForSlaveSections = notificationsForSlaveSections;
 	}
 
-	public List<Notification> getNotificationsForMasterSections() {
+	public Set<Notification> getNotificationsForMasterSections() {
 		return notificationsForMasterSections;
 	}
 
-	public void setNotificationsForMasterSections(List<Notification> notificationsForMasterSections) {
+	public void setNotificationsForMasterSections(Set<Notification> notificationsForMasterSections) {
 		this.notificationsForMasterSections = notificationsForMasterSections;
 	}
 }

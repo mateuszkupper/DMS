@@ -8,6 +8,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 @Entity(name = "notifications")
 public class Notification {
 
@@ -18,10 +21,12 @@ public class Notification {
 
 	@ManyToOne(targetEntity = Section.class)
 	@JoinColumn(name = "section_master_id")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private Section sectionMaster;
 
 	@ManyToOne(targetEntity = Section.class)
 	@JoinColumn(name = "section_slave_id")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private Section sectionSlave;
 
 	@Column(name = "details")

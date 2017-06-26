@@ -98,4 +98,17 @@ public class MySQLManager implements PhysicalDBImplementation {
 		SessionFactory sessionFactory = metadata.getSessionFactoryBuilder().build();
 		return sessionFactory.openSession();
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Object> retrieveAll(Class<?> c) {
+		Session session = getHibernateSession();
+		Transaction transaction = session.beginTransaction();
+		Entity entity = c.getAnnotation(Entity.class);
+		String tableName = entity.name();
+		List<Object> list = session.createQuery("FROM " + tableName).list();
+		transaction.commit();
+		session.close();
+		return list;
+	}
 }

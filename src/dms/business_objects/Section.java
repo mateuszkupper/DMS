@@ -16,6 +16,8 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity(name = "sections")
 public class Section {
 
@@ -35,6 +37,7 @@ public class Section {
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private Section previousVersion;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "previousVersion", targetEntity = Section.class)
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<Section> subsequentVersions;
@@ -43,10 +46,12 @@ public class Section {
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private Document document;
 
+	@JsonIgnore
 	@OneToMany(cascade = { CascadeType.ALL }, targetEntity = Notification.class, mappedBy = "sectionSlave")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<Notification> notificationsForSlaveSections;
 
+	@JsonIgnore
 	@OneToMany(cascade = { CascadeType.ALL }, targetEntity = Notification.class, mappedBy = "sectionMaster")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<Notification> notificationsForMasterSections;

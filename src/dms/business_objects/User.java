@@ -13,6 +13,8 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity(name = "users")
 public class User {
 
@@ -23,7 +25,8 @@ public class User {
 
 	@Column(name = "name")
 	private String name;
-
+	
+	@JsonIgnore
 	@OneToMany(cascade = { CascadeType.ALL }, targetEntity = Permission.class, mappedBy = "user")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<Permission> permissions;

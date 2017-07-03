@@ -24,4 +24,9 @@ public class UserController {
 	public @ResponseBody User getUser(@PathVariable int userid) {
 		return (User)DbManager.retrieve(User.class, String.valueOf(userid), new MySQLManager());
 	}
+	
+//	@GetMapping(path = "/user/{userid}/changes", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+//	public @ResponseBody User getUser(@PathVariable int userid) {
+//		return (User)DbManager.retrieve(User.class, String.valueOf(userid), new MySQLManager());
+//	}	
 }

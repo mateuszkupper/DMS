@@ -15,8 +15,8 @@ import dms.database.DbManager;
 import dms.database.MySQLManager;
 
 @RestController
-@SuppressWarnings("unchecked")
-public class DocumentController {	
+public class PermissionController {	
+	@SuppressWarnings("unchecked")
 	@GetMapping(path = "/documents", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public @ResponseBody List<Document> getDocuments() {
 		MySQLManager mysqlManager = new MySQLManager();
@@ -24,18 +24,17 @@ public class DocumentController {
 		return documents;
 	}	
 
+	@SuppressWarnings("unchecked")
 	@GetMapping(path = "/user/{userid}/documents", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public @ResponseBody List<Document> getDocumentsForUser(@PathVariable int userid)  {
-		List<Permission> permissions = (List<Permission>) DbManager.retrieveList(Permission.class,
-									"user_id", String.valueOf(userid), new MySQLManager());
-		if(permissions!=null) {
-			List<Document> documentsForUser = new ArrayList<Document>();
-			for(Permission permission : permissions) {
-				documentsForUser.add(permission.getDocument());
-			}
-			return documentsForUser;
-		} else {
-			return null;
+		MySQLManager mysqlManager = new MySQLManager();
+		List<Permission> permissions = (List<Permission>) DbManager.
+									retrieveList(Permission.class,
+									"user_id", String.valueOf(userid), mysqlManager);
+		List<Document> documentsForUser = new ArrayList<Document>();
+		for(Permission permission : permissions) {
+			documentsForUser.add(permission.getDocument());
 		}
+		return documentsForUser;
 	}
 }

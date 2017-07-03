@@ -3,7 +3,7 @@ package dms.database;
 import java.util.List;
 
 public interface PhysicalDBImplementation {
-	public Object retrieve(Class<?> c, int id);
+	public Object retrieve(Class<?> c, String id);
 
 	public List<Object> retrieveList(Class<?> c, String attribute, String value);
 	

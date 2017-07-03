@@ -32,15 +32,20 @@ public class Notification {
 	@Column(name = "details")
 	private String details;
 
+	@Column(name = "is_read")
+	private boolean is_read;
+	
 	public Notification() {
 
 	}
 
-	public Notification(int id, Section sectionMaster, Section sectionSlave, String details) {
+	public Notification(int id, Section sectionMaster, Section sectionSlave,
+						String details, boolean is_read) {
 		this.id = id;
 		this.sectionMaster = sectionMaster;
 		this.sectionSlave = sectionSlave;
 		this.details = details;
+		this.setIs_read(is_read);
 	}
 
 	public int getId() {
@@ -73,5 +78,13 @@ public class Notification {
 
 	public void setDetails(String details) {
 		this.details = details;
+	}
+
+	public boolean isIs_read() {
+		return is_read;
+	}
+
+	public void setIs_read(boolean is_read) {
+		this.is_read = is_read;
 	}
 }

@@ -16,18 +16,18 @@ import java.util.List;
 import org.ektorp.http.*;
 
 public class CouchDbManager implements PhysicalDBImplementation {
-
+	
 	@Override
-	public Object retrieve(Class<?> c, int id) {
+	public Object retrieve(Class<?> c, String id) {
 		try {
 			CouchDbConnector db = getConnector();
-			return db.get(c, String.valueOf(id));
+			return db.get(c, id);
 		} catch (XPathExpressionException | ParserConfigurationException | SAXException | IOException e) {
 			e.printStackTrace();
 			return null;
 		}
-	}
-
+	}	
+	
 	@Override
 	public void persist(Object object) {
 		try {

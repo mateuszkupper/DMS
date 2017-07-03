@@ -39,7 +39,8 @@ public class MySQLManager implements PhysicalDBImplementation {
 	}
 
 	@Override
-	public Object retrieve(Class<?> c, int id) {
+	public Object retrieve(Class<?> c, String idString) {
+		int id = Integer.parseInt(idString);
 		Session session = getHibernateSession();
 		Transaction transaction = session.beginTransaction();
 		Object obj = (Object) session.get(c, id);

@@ -1,6 +1,5 @@
 package dms.business_objects;
 
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -9,7 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -26,21 +24,11 @@ public class Section {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
+	@Column(name = "order_number")
+	private int order_number;
+	
 	@Column(name = "title")
 	private String title;
-
-	@Column(name = "couch_db_section_id")
-	private String couch_db_section_id;
-
-	@ManyToOne(targetEntity = Section.class)
-	@JoinColumn(name = "previous_version_id")
-	@LazyCollection(LazyCollectionOption.FALSE)
-	private Section previousVersion;
-
-	@JsonIgnore
-	@OneToMany(mappedBy = "previousVersion", targetEntity = Section.class)
-	@LazyCollection(LazyCollectionOption.FALSE)
-	private Set<Section> subsequentVersions;
 
 	@ManyToOne(targetEntity = Document.class)
 	@LazyCollection(LazyCollectionOption.FALSE)
@@ -60,17 +48,14 @@ public class Section {
 
 	}
 
-	public Section(int id, String title, String couch_db_section_id, Set<Notification> notificationsForSlaveSections,
-			Set<Notification> notificationsForMasterSections, Section previousVersion, Document document,
-			Set<Section> subsequentVersions) {
+	public Section(int id, String title, Set<Notification> notificationsForSlaveSections,
+			Set<Notification> notificationsForMasterSections, Document document, int order_number) {
 		this.id = id;
 		this.title = title;
-		this.couch_db_section_id = couch_db_section_id;
-		this.previousVersion = previousVersion;
 		this.document = document;
-		this.subsequentVersions = subsequentVersions;
 		this.notificationsForMasterSections = notificationsForMasterSections;
 		this.notificationsForSlaveSections = notificationsForSlaveSections;
+		this.order_number = order_number;
 	}
 
 	public int getId() {
@@ -89,22 +74,6 @@ public class Section {
 		this.title = title;
 	}
 
-	public String getCouch_db_section_id() {
-		return couch_db_section_id;
-	}
-
-	public void setCouch_db_section_id(String couch_db_section_id) {
-		this.couch_db_section_id = couch_db_section_id;
-	}
-
-	public Section getPreviousVersion() {
-		return previousVersion;
-	}
-
-	public void setPreviousVersion(Section previousVersion) {
-		this.previousVersion = previousVersion;
-	}
-
 	public Document getDocument() {
 		return document;
 	}
@@ -113,14 +82,8 @@ public class Section {
 		this.document = document;
 	}
 
-	public Set<Section> getSubsequentVersions() {
-		return subsequentVersions;
-	}
-
-	public void setSubsequentVersions(Set<Section> subsequentVersions) {
-		this.subsequentVersions = subsequentVersions;
-	}
-
+	
+	
 	public Set<Notification> getNotificationsForSlaveSections() {
 		return notificationsForSlaveSections;
 	}
@@ -135,5 +98,13 @@ public class Section {
 
 	public void setNotificationsForMasterSections(Set<Notification> notificationsForMasterSections) {
 		this.notificationsForMasterSections = notificationsForMasterSections;
+	}
+
+	public int getOrder_number() {
+		return order_number;
+	}
+
+	public void setOrder_number(int order_number) {
+		this.order_number = order_number;
 	}
 }

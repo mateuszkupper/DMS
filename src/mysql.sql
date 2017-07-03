@@ -12,6 +12,7 @@ CREATE TABLE `notifications` (
   `section_master_id` int(11) DEFAULT NULL,
   `section_slave_id` int(11) DEFAULT NULL,
   `details` varchar(255) DEFAULT NULL,
+  `is_read` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_master` (`section_master_id`),
   KEY `fk_slave` (`section_slave_id`),
@@ -23,14 +24,12 @@ CREATE TABLE `sections` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) DEFAULT NULL,
   `document_id` int(11) DEFAULT NULL,
-  `couch_db_section_id` int(11) DEFAULT NULL,
-  `previous_version_id` int(11) DEFAULT NULL,
+  `order_number` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_doc` (`document_id`),
-  KEY `version` (`previous_version_id`),
-  CONSTRAINT `fk_doc` FOREIGN KEY (`document_id`) REFERENCES `documents` (`id`),
-  CONSTRAINT `version` FOREIGN KEY (`previous_version_id`) REFERENCES `sections` (`id`)
+  CONSTRAINT `fk_doc` FOREIGN KEY (`document_id`) REFERENCES `documents` (`id`)
 );
+
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,

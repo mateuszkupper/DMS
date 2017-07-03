@@ -16,25 +16,25 @@ import dms.database.MySQLManager;
 
 @RestController
 public class ParagraphFromController {	
-	@SuppressWarnings("unchecked")
-	@GetMapping(path = "/documents", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public @ResponseBody List<Document> getDocuments() {
-		MySQLManager mysqlManager = new MySQLManager();
-		List<Document> documents = (List<Document>) DbManager.retrieveAll(Document.class, mysqlManager);
-		return documents;
-	}	
-
-	@SuppressWarnings("unchecked")
-	@GetMapping(path = "/user/{userid}/documents", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public @ResponseBody List<Document> getDocumentsForUser(@PathVariable int userid)  {
-		MySQLManager mysqlManager = new MySQLManager();
-		List<Permission> permissions = (List<Permission>) DbManager.
-									retrieveList(Permission.class,
-									"user_id", String.valueOf(userid), mysqlManager);
-		List<Document> documentsForUser = new ArrayList<Document>();
-		for(Permission permission : permissions) {
-			documentsForUser.add(permission.getDocument());
-		}
-		return documentsForUser;
-	}
+//	@SuppressWarnings("unchecked")
+//	@GetMapping(path = "/documents", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+//	public @ResponseBody List<Document> getDocuments() {
+//		MySQLManager mysqlManager = new MySQLManager();
+//		List<Document> documents = (List<Document>) DbManager.retrieveAll(Document.class, mysqlManager);
+//		return documents;
+//	}	
+//
+//	@SuppressWarnings("unchecked")
+//	@GetMapping(path = "/user/{userid}/documents", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+//	public @ResponseBody List<Document> getDocumentsForUser(@PathVariable int userid)  {
+//		MySQLManager mysqlManager = new MySQLManager();
+//		List<Permission> permissions = (List<Permission>) DbManager.
+//									retrieveList(Permission.class,
+//									"user_id", String.valueOf(userid), mysqlManager);
+//		List<Document> documentsForUser = new ArrayList<Document>();
+//		for(Permission permission : permissions) {
+//			documentsForUser.add(permission.getDocument());
+//		}
+//		return documentsForUser;
+//	}
 }

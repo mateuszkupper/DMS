@@ -19,9 +19,7 @@ import dms.database.MySQLManager;
 public class DocumentController {	
 	@GetMapping(path = "/documents", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public @ResponseBody List<Document> getDocuments() {
-		MySQLManager mysqlManager = new MySQLManager();
-		List<Document> documents = (List<Document>) DbManager.retrieveAll(Document.class, mysqlManager);
-		return documents;
+		return (List<Document>) DbManager.retrieveAll(Document.class, new MySQLManager());
 	}	
 
 	@GetMapping(path = "/user/{userid}/documents", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -38,4 +36,9 @@ public class DocumentController {
 			return null;
 		}
 	}
+
+	@GetMapping(path = "/document/{documentid}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public @ResponseBody Document getDocument(@PathVariable int documentid) {
+		return (Document)DbManager.retrieve(Document.class, String.valueOf(documentid), new MySQLManager());
+	}	
 }

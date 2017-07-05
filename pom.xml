@@ -34,6 +34,16 @@
         <enabled>false</enabled>
       </snapshots>
     </repository>
+    <repository>
+        <id>spring-milestone</id>
+        <name>Spring Milestone Repository</name>
+        <url>https://repo.spring.io/milestone</url>
+    </repository>
+	<repository>
+		<id>spring-snapshot</id>
+		<name>Spring Snapshot Repository</name>
+		<url>http://repo.spring.io/snapshot</url>
+	</repository>        
   </repositories>
   <dependencies>
 	<dependency>
@@ -92,6 +102,30 @@
 	    <artifactId>jersey-json</artifactId>
 	    <version>1.19.4</version>
 	</dependency>
-					   	
+	<dependency>
+		<groupId>org.springframework.security</groupId>
+		<artifactId>spring-security-web</artifactId>
+		<version>4.2.3.RELEASE</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework.security</groupId>
+		<artifactId>spring-security-config</artifactId>
+		<version>4.2.3.RELEASE</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-core</artifactId>
+	    <version>4.3.9.RELEASE</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-beans</artifactId>
+	    <version>4.3.9.RELEASE</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.springframework.security</groupId>
+	    <artifactId>spring-security-core</artifactId>
+	    <version>4.2.3.RELEASE</version>
+	</dependency>								   	
   </dependencies> 
 </project>

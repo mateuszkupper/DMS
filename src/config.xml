@@ -3,8 +3,11 @@
 	<db>
 		<couchdb>
 			<url>http://127.0.0.1:5984</url>
+			<host>127.0.0.1</host>
 			<username>admin</username>
 			<password>password</password>
+			<port>5984</port>
+			<db>DMS</db>
 		</couchdb>
 	</db>
 </config>

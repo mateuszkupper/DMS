@@ -25,9 +25,13 @@ CREATE TABLE `sections` (
   `title` varchar(255) DEFAULT NULL,
   `document_id` int(11) DEFAULT NULL,
   `order_number` int(11) DEFAULT NULL,
+  `couch_db_section_id` int(11) DEFAULT NULL,
+  `previous_version_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_doc` (`document_id`),
-  CONSTRAINT `fk_doc` FOREIGN KEY (`document_id`) REFERENCES `documents` (`id`)
+  KEY `version` (`previous_version_id`),
+  CONSTRAINT `fk_doc` FOREIGN KEY (`document_id`) REFERENCES `documents` (`id`),
+  CONSTRAINT `version` FOREIGN KEY (`previous_version_id`) REFERENCES `sections` (`id`)
 );
 
 

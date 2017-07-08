@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -34,6 +35,19 @@ public class Section {
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private Document document;
 
+	@Column(name = "couch_db_section_id")
+	private String couch_db_section_id;
+
+	@ManyToOne(targetEntity = Section.class)
+	@JoinColumn(name = "previous_version_id")
+	@LazyCollection(LazyCollectionOption.FALSE)
+	private Section previousVersion;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "previousVersion", targetEntity = Section.class)
+	@LazyCollection(LazyCollectionOption.FALSE)
+	private Set<Section> subsequentVersions;	
+	
 	@JsonIgnore
 	@OneToMany(cascade = { CascadeType.ALL }, targetEntity = Notification.class, mappedBy = "sectionSlave")
 	@LazyCollection(LazyCollectionOption.FALSE)
@@ -49,13 +63,17 @@ public class Section {
 	}
 
 	public Section(int id, String title, Set<Notification> notificationsForSlaveSections,
-			Set<Notification> notificationsForMasterSections, Document document, int order_number) {
+			Set<Notification> notificationsForMasterSections, Document document, int order_number, 
+			String couch_db_section_id, Section previousVersion, Set<Section> subsequentVersions) {
 		this.id = id;
 		this.title = title;
 		this.document = document;
 		this.notificationsForMasterSections = notificationsForMasterSections;
 		this.notificationsForSlaveSections = notificationsForSlaveSections;
 		this.order_number = order_number;
+		this.setCouch_db_section_id(couch_db_section_id);
+		this.setSubsequentVersions(subsequentVersions);
+		this.setPreviousVersion(previousVersion);
 	}
 
 	public int getId() {
@@ -82,8 +100,6 @@ public class Section {
 		this.document = document;
 	}
 
-	
-	
 	public Set<Notification> getNotificationsForSlaveSections() {
 		return notificationsForSlaveSections;
 	}
@@ -106,5 +122,29 @@ public class Section {
 
 	public void setOrder_number(int order_number) {
 		this.order_number = order_number;
+	}
+
+	public String getCouch_db_section_id() {
+		return couch_db_section_id;
+	}
+
+	public void setCouch_db_section_id(String couch_db_section_id) {
+		this.couch_db_section_id = couch_db_section_id;
+	}
+
+	public Section getPreviousVersion() {
+		return previousVersion;
+	}
+
+	public void setPreviousVersion(Section previousVersion) {
+		this.previousVersion = previousVersion;
+	}
+
+	public Set<Section> getSubsequentVersions() {
+		return subsequentVersions;
+	}
+
+	public void setSubsequentVersions(Set<Section> subsequentVersions) {
+		this.subsequentVersions = subsequentVersions;
 	}
 }

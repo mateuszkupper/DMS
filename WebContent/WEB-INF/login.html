@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<head>
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+
+<!-- Compiled and minified JavaScript -->
+
+<link href="https://fonts.googleapis.com/css?family=EB+Garamond"
+	rel="stylesheet">
+<!-- Include stylesheet -->
+<link href="https://cdn.quilljs.com/1.2.6/quill.snow.css"
+	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=EB+Garamond"
+	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto"
+	rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<style>
+a, .card-action {
+	font-family: EB Garamond;
+	font-size: 15px;
+	color: #222222;
+}
+
+.valign-wrapper {
+	height: 400px;
+}
+
+html {
+	font-family: EB Garamond;
+}
+
+.btn {
+	background-color: #333333;
+	text-transform: capitalize;
+	font-weight: normal;
+	font-size: 13px;
+}
+
+.btn:hover {
+	background-color: #AAAAAA;
+	text-transform: capitalize;
+	font-weight: 100;
+}
+</style>
+</head>
+<body>
+
+	<div class="container">
+		<div class="row">
+			<div class="col s12 valign-wrapper">
+				<dic class="container">
+				<div class="card white darken-1 z-depth-3 col s12">
+					<div class="card-content black-text">
+						<span class="card-title">Login</span>
+						<div class="row">
+							<div class="input-field col s6 black-text">
+								<input id="first_name" type="text" class="validate"> <label
+									for="first_name">User Name</label>
+							</div>
+							<div class="input-field col s6 black-text">
+								<input id="password" type="password" class="validate"> <label
+									for="password">Password</label>
+							</div>
+						</div>
+					</div>
+					<div class="card-action black-text">
+						<a class="waves-effect waves-light btn">Login</a> <a
+							class="waves-effect waves-light btn">Forgot your password?</a>
+					</div>
+				</div>
+				</dic>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- Include the Quill library -->
+	<script src="https://cdn.quilljs.com/1.2.6/quill.js"></script>
+
+	<!-- Initialize Quill editor -->
+	<script>
+  var FontAttributor = Quill.import('attributors/class/font');
+FontAttributor.whitelist = [
+  'Roboto'
+];
+Quill.register(FontAttributor, true);
+
+var toolbarOptions = [
+  ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+  ['blockquote', 'code-block'],
+
+  [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+  [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+  [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+  [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+  [{ 'direction': 'rtl' }],                         // text direction
+
+  [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+  [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+  [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+  [{ 'font': ['Roboto'] }],
+  [{ 'align': [] }],
+
+  ['clean']                                         // remove formatting button
+];
+
+  var quill = new Quill('#editor', {
+
+  theme: 'snow'
+  });
+  
+
+</script>
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+</body>
+</html>

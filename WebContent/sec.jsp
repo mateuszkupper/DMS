@@ -20,97 +20,15 @@
 	rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
-
-<style>
-.ql-container {
-	font-family: EB Garamond;
-}
-
-.ql-container.ql-snow, .ql-toolbar.ql-snow {
-	border: none;
-}
-
-#a {
-	font-family: EB Garamond, Calibri, Trebuchet, sans-serif;
-	font-size: 15px;
-}
-
-h1, h2, h3, h4, h5, h6, h7 {
-	font-family: Roboto;
-	font-weight: 300;
-	margin-bottom: 14px;
-}
-
-html {
-	font-family: EB Garamond;
-}
-
-.editor {
-	font-family: EB Garamond;
-}
-
-.container {
-	width: 85%;
-	max-width: none;
-	position: relative;
-}
-
-nav ul a {
-	color: #000000;
-}
-
-.collection a {
-	cursor: pointer;
-	z-index: 34;
-}
-
-nav {
-	z-index: 30;
-	position: relative;
-}
-
-.collection {
-	position: relative;
-	border: none;
-	z-index: 0;
-	margin-top: 15px;
-}
-
-h2 {
-	font-size: 25px;
-	padding-left: 10px;
-}
-
-#doc-list .doc-title {
-	font-size: 20px;
-}
-
-#doc-list .collection-item:hover {
-	background-color: #DDDDDD;
-}
-
-#space {
-	height: 30px;
-}
-
-p {
-	padding-left: 14px;
-}
-
-.collapsible-header h3 {
-	font-family: EB Garamond;
-	font-size: 20px;
-	padding-top: 10px;
-}
-</style>
-
+<link href="${pageContext.request.contextPath}/css/style.css"
+	rel="stylesheet">
 </head>
 <body>
 	<div class="col s3 z-depth-3">
 
-		<nav class="white">
-			<div class="nav-wrapper">
-				<a href="#" class="brand-logo black-text">Logo</a>
+		<nav class="deep-orange darken-3">
+			<div class="nav-wrapper white-text">
+				<a href="#" class="brand-logo">Logo</a>
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
 					<li><a href="sass.html">Home</a></li>
 					<li><a href="badges.html">Admin</a></li>
@@ -147,7 +65,7 @@ p {
 					</a>
 				</div>
 			</div>
-			<div class="col l8 m12 z-depth-3">
+			<div class="col l8 m12 z-depth-3 deep-orange lighten-4 black-text" id="middle">
 				<h2>Doc1 > Sec1</h2>
 				<p>Details Details DetailsDetailsDetailsDetailsDetails
 					DetailsDetails</p>
@@ -157,19 +75,19 @@ p {
 
 
 
-				<ul class="collapsible popout" data-collapsible="accordion">
+				<ul class="collapsible popout black-text" data-collapsible="accordion">
 					<li>
 						<div class="collapsible-header">
 							<h3>Paragraph I</h3>
 						</div>
-						<div class="collapsible-body">
+						<div class="collapsible-body white">
 
 
 
 
 
 
-							<div class="editor">
+							<div class="editor white">
 								<h1>Document</h1>
 								<p>From Wikipedia, the free encyclopedia The United States
 									of America (/əˈmɛrɪkə/; USA), commonly known as the United
@@ -546,24 +464,24 @@ p {
 			</div>
 			<div class="row"></div>
 		</div>
-		<footer class="page-footer white z-depth-2">
+		<footer class="page-footer deep-orange z-depth-2">
 			<div class="container">
 				<div class="row">
 					<div class="col l6 s12">
-						<h5 class="black-text">Footer Content</h5>
-						<p class="black-text text-lighten-4">You can use rows and
+						<h5 class="white-text">Footer Content</h5>
+						<p class="white-text text-lighten-4">You can use rows and
 							columns here to organize your footer content.</p>
 					</div>
 					<div class="col l4 offset-l2 s12">
-						<h5 class="black-text">Links</h5>
+						<h5 class="white-text">Links</h5>
 						<ul>
-							<li><a class="black-text text-lighten-3" href="#!">Link
+							<li><a class="white-text text-lighten-3" href="#!">Link
 									1</a></li>
-							<li><a class="black-text text-lighten-3" href="#!">Link
+							<li><a class="white-text text-lighten-3" href="#!">Link
 									2</a></li>
-							<li><a class="black-text text-lighten-3" href="#!">Link
+							<li><a class="white-text text-lighten-3" href="#!">Link
 									3</a></li>
-							<li><a class="black-text text-lighten-3" href="#!">Link
+							<li><a class="white-text text-lighten-3" href="#!">Link
 									4</a></li>
 						</ul>
 					</div>

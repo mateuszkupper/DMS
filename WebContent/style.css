@@ -1,0 +1,147 @@
+@CHARSET "ISO-8859-1";
+
+.card-action {
+	font-family: EB Garamond;
+	font-size: 15px;
+	color: #222222;
+}
+
+.valign-wrapper {
+	height: 400px;
+}
+
+html {
+	font-family: Roboto;
+	font-weight:300;
+}
+
+.btn {
+	background-color: #333333;
+	text-transform: capitalize;
+	font-weight: normal;
+	font-size: 13px;
+}
+
+.btn:hover {
+	background-color: #AAAAAA;
+	text-transform: capitalize;
+	font-weight: 100;
+}
+
+.ql-container {
+	font-family: Roboto;
+}
+
+.ql-container.ql-snow, .ql-toolbar.ql-snow {
+	border: none;
+}
+
+#a {
+	font-family: Roboto;
+	font-size: 15px;
+}
+
+h1, h2, h3, h4, h5, h6, h7 {
+	font-family: Roboto;
+	font-weight: 300;
+	margin-bottom: 14px;
+}
+
+
+.editor {
+	font-family: EB Garamond;
+}
+
+.white-text a {
+	color: #FFFFFF;
+}
+
+.white-text a:hover {
+	color: #AAAAAA;
+}
+
+.black-text a {
+	color: #000000;
+}
+
+.black-text a:hover {
+	color: #AAAAAA;
+}
+
+p {
+	font-size: 15px;
+}
+
+.container {
+	width: 85%;
+	max-width: none;
+	position: relative;
+}
+
+nav ul a {
+	color: #000000;
+}
+
+.collection a {
+	cursor: pointer;
+	z-index: 34;
+}
+
+nav {
+	z-index: 30;
+	position: relative;
+}
+
+.collection {
+	position: relative;
+	border: none;
+	z-index: 0;
+	margin-top: 15px;
+}
+
+h1 {
+	font-size: 40px;
+}
+
+h2 {
+	font-size: 35px;
+	padding-left: 10px;
+}
+
+h3 {
+	font-size: 30px;
+}
+
+h4 {
+	font-size: 25px;
+}
+
+h5 {
+	font-size: 20px;
+}
+
+h6 {
+	font-size: 15px;
+}
+
+#doc-list .doc-title {
+	font-size: 20px;	
+}
+
+#doc-list .collection-item:hover {
+	background-color: #DDDDDD;
+}
+
+#space {
+	height: 30px;
+}
+
+p {
+	padding-left: 14px;
+}
+
+.collapsible-header h3 {
+	font-family: Roboto;
+	font-size: 20px;
+	padding-top: 10px;
+}

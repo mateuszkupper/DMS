@@ -26,6 +26,15 @@ public class User {
 	@Column(name = "name")
 	private String name;
 	
+	@Column(name = "username")
+	private String email;	
+
+	@Column(name = "password")
+	private String password;	
+	
+	@Column(name = "enabled")
+	private boolean enabled;
+	
 	@JsonIgnore
 	@OneToMany(cascade = { CascadeType.ALL }, targetEntity = Permission.class, mappedBy = "user")
 	@LazyCollection(LazyCollectionOption.FALSE)
@@ -35,10 +44,13 @@ public class User {
 
 	}
 
-	public User(int id, String name, Set<Permission> permissions) {
+	public User(int id, String name, Set<Permission> permissions, String email, String password, boolean enabled) {
 		this.id = id;
 		this.name = name;
 		this.permissions = permissions;
+		this.email = email;
+		this.password = password;
+		this.enabled = enabled;
 	}
 
 	public int getId() {
@@ -63,5 +75,29 @@ public class User {
 
 	public void setPermissions(Set<Permission> permissions) {
 		this.permissions = permissions;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
 }

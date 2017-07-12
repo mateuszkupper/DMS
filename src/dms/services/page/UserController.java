@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import dms.business_objects.User;
 import dms.database.DbManager;
 import dms.database.MySQLManager;
+import dms.services.security.SecurityProfile;
 
 @SuppressWarnings("unchecked")
 @RestController
@@ -28,5 +29,10 @@ public class UserController {
 //	@GetMapping(path = "/user/{userid}/changes", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 //	public @ResponseBody User getUser(@PathVariable int userid) {
 //		return (User)DbManager.retrieve(User.class, String.valueOf(userid), new MySQLManager());
-//	}	
+//	}
+	
+	@GetMapping(path = "/user", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public @ResponseBody User getCurrentUser() {
+		return SecurityProfile.getUser();
+	}	
 }

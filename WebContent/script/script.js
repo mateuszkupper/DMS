@@ -1,42 +1,71 @@
-// script.js
+    var mainSection = angular.module('mainSection', ['ngRoute']);
 
-    // create the module and name it scotchApp
-        // also include ngRoute for all our routing needs
-    var scotchApp = angular.module('app', ['ngRoute']);
-
-    // configure our routes
-    scotchApp.config(function($routeProvider) {
+    mainSection.config(function($routeProvider) {
         $routeProvider
 
-            // route for the home page
+        //for each site eg. documents, section etc
             .when('/', {
-                templateUrl : '/DMS/templates/notifications.html',
-                controller  : 'mainController'
+                templateUrl : '/DMS/templates/mainSectionForHome.jsp',
+                controller  : 'mainSectionForHomeController'
             })
 
-            // route for the about page
             .when('/about', {
                 templateUrl : 'pages/about.html',
                 controller  : 'aboutController'
             })
 
-            // route for the contact page
             .when('/contact', {
                 templateUrl : 'pages/contact.html',
                 controller  : 'contactController'
             });
     });
+    
+    mainSection.controller('mainSectionForHomeController', function($scope, $http) {
+    	var userid;
+        $http.get('http://localhost:8080/DMS/user').
+        then(function(response) {
+            $http.get('http://localhost:8080/DMS/user/' + response.data.id + '/documents').
+            then(function(responseUser) {
+                $scope.documents = responseUser.data;
+            });
+        });
+    });  
 
-    // create the controller and inject Angular's $scope
-    scotchApp.controller('mainController', function($scope) {
-        // create a message to display in our view
-        $scope.message = 'Everyone come and see how good I look!';
+
+
+
+
+	var notification = angular.module('notifications', ['ngRoute']);
+
+    notification.config(function($routeProvider) {
+        $routeProvider
+
+        //for each site eg. documents, section etc
+            .when('/', {
+                templateUrl : '/DMS/templates/notificationsForHome.jsp',
+                controller  : 'notificationsForHomeController'
+            })
+
+            .when('/about', {
+                templateUrl : 'pages/about.html',
+                controller  : 'aboutController'
+            })
+
+            .when('/contact', {
+                templateUrl : 'pages/contact.html',
+                controller  : 'contactController'
+            });
+    });
+    
+    notification.controller('notificationsForHomeController', function($scope, $http) {
+    	var userid;
+        $http.get('http://localhost:8080/DMS/user').
+        then(function(response) {
+            $http.get('http://localhost:8080/DMS/user/' + response.data.id + '/notifications').
+            then(function(responseUser) {
+                $scope.notifications = responseUser.data;
+            });
+        });
     });
 
-    scotchApp.controller('aboutController', function($scope) {
-        $scope.message = 'Look! I am an about page.';
-    });
-
-    scotchApp.controller('contactController', function($scope) {
-        $scope.message = 'Contact us! JK. This is just a demo.';
-    });
+  

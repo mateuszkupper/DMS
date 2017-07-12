@@ -1,4 +1,4 @@
-<html ng-app="app">
+<html>
 <head>
 <!-- Compiled and minified CSS -->
 <link rel="stylesheet"
@@ -24,7 +24,7 @@
           <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
           <script src="${pageContext.request.contextPath}/script/script.js"></script>     
 </head>
-<body ng-controller="mainController">
+<body>
 	<div class="col s3 z-depth-3">
 
 		<nav class="deep-orange darken-3">
@@ -40,36 +40,12 @@
 	</div>
 	<div class="container">
 		<div class="row">
-			<div class="col l2 m12" id="notif" ng-view>
+			<div class="col l2 m12" id="notif" ng-controller="notificationsForHomeController" ng-view>
 
 			</div>
-			<div class="col l8 m12 z-depth-3 deep-orange lighten-4 black-text" id="middle">
+			<div class="col l8 m12 z-depth-3 deep-orange lighten-4 black-text" id="middle" ng-controller="mainSectionForHomeController" ng-app="mainSection" ng-view>
 
-				<h2>Your documents:</h2>
-				<div class="collection deep-orange lighten-4" id="doc-list">
-					<div class="collection-item avatar text-lighten-3 deep-orange lighten-4"><a href="#!"> <span class="title doc-title">Doc 1</span><br>
-						<span>Desc descr Desc descr Desc descr Desc descrDesc descr
-							Desc descr<br> Master doc
-					</span></a>
-					</div> <div class="collection-item avatar text-lighten-3 deep-orange lighten-4"><a href="#!"> <span class="title doc-title">Doc 1</span><br>
-						<span>Desc descr Desc descr Desc descr Desc descrDesc descr
-							Desc descr<br> Master doc
-					</span></a>
-					</div> <div class="collection-item avatar text-lighten-3 deep-orange lighten-4"><a href="#!"> <span class="title doc-title">Doc 1</span><br>
-						<span>Desc descr Desc descr Desc descr Desc descrDesc descr
-							Desc descr<br> Master doc
-					</span></a>
-					</div> <div class="collection-item avatar text-lighten-3 deep-orange lighten-4"><a href="#!"> <span class="title doc-title">Doc 1</span><br>
-						<span>Desc descr Desc descr Desc descr Desc descrDesc descr
-							Desc descr<br> Master doc
-					</span></a><a
-							class="btn-floating halfway-fab waves-effect deep-orange darken-4 waves-light text-lighten-3 z-depth-3"><i
-							class="material-icons">add</i></a>
-					</div>						
-        <div id="space">
 
-        </div>
-				</div>
 			</div>
 			<div class="col l2 m12"><h2>Latest changes:</h2>
 				          <div class="collection black-text">
@@ -119,36 +95,36 @@
 
 	<!-- Initialize Quill editor -->
 	<script>
-  var FontAttributor = Quill.import('attributors/class/font');
-FontAttributor.whitelist = [
-  'Roboto'
-];
-Quill.register(FontAttributor, true);
+//   var FontAttributor = Quill.import('attributors/class/font');
+// FontAttributor.whitelist = [
+//   'Roboto'
+// ];
+// Quill.register(FontAttributor, true);
 
-var toolbarOptions = [
-  ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-  ['blockquote', 'code-block'],
+// var toolbarOptions = [
+//   ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+//   ['blockquote', 'code-block'],
 
-  [{ 'header': 1 }, { 'header': 2 }],               // custom button values
-  [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-  [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
-  [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
-  [{ 'direction': 'rtl' }],                         // text direction
+//   [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+//   [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+//   [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+//   [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+//   [{ 'direction': 'rtl' }],                         // text direction
 
-  [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
-  [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+//   [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+//   [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
 
-  [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
-  [{ 'font': ['Roboto'] }],
-  [{ 'align': [] }],
+//   [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+//   [{ 'font': ['Roboto'] }],
+//   [{ 'align': [] }],
 
-  ['clean']                                         // remove formatting button
-];
+//   ['clean']                                         // remove formatting button
+// ];
 
-  var quill = new Quill('#editor', {
+//   var quill = new Quill('#editor', {
 
-  theme: 'snow'
-  });
+//   theme: 'snow'
+//   });
   
 
 </script>

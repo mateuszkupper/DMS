@@ -37,7 +37,7 @@ public class XMLRetriever {
 
 	public static Document loadXMLFile() throws ParserConfigurationException, SAXException, IOException {
 		try {
-			File fXmlFile = new File("src/config.xml");
+			File fXmlFile = new File("C:/Programmes/apache-tomcat-8.5.13/webapps/DMS/WEB-INF/classes/config.xml");
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder;
 			dBuilder = dbFactory.newDocumentBuilder();

@@ -7,7 +7,7 @@
 			<username>admin</username>
 			<password>password</password>
 			<port>5984</port>
-			<db>DMS</db>
+			<db>dms</db>
 		</couchdb>
 	</db>
 </config>

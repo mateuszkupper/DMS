@@ -1,3 +1,4 @@
+<%@ page import="dms.services.security.SecurityProfile"%>
 <html>
 <head>
 <!-- Compiled and minified CSS -->
@@ -20,40 +21,59 @@
 	rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/style.css"
 	rel="stylesheet">
-      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
-          <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
-          <script src="${pageContext.request.contextPath}/script/script.js"></script>     
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+<script
+	src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+<script src="${pageContext.request.contextPath}/script/script.js"></script>
 </head>
-<body>
+<body ng-app="mainSection">
 	<div class="col s3 z-depth-3">
-
 		<nav class="deep-orange darken-3">
 			<div class="nav-wrapper white-text">
 				<a href="#" class="brand-logo">Logo</a>
 				<ul id="nav-mobile" class="right hide-on-med-and-down">
-					<li><a href="sass.html">Home</a></li>
-					<li><a href="badges.html">Admin</a></li>
-					<li><a href="collapsible.html">User User</a></li>
+					<li><a href="/">Home</a></li>
+					<li><a href="/admin">Admin</a></li>
+					<li><a
+						href="DMS//user/<%=SecurityProfile.getUser().getId()%>"><%=SecurityProfile.getUser().getName()%></a></li>
 				</ul>
 			</div>
 		</nav>
 	</div>
 	<div class="container">
 		<div class="row">
-			<div class="col l2 m12" id="notif" ng-controller="notificationsForHomeController" ng-view>
+			<div class="col l2 m12" id="notif"
+				ng-controller="notificationsForHomeController">
+				<h2>Notifications:</h2>
+				<div class="collection">
+					<a class="collection-item avatar black-text text-lighten-3"
+						href="/DMS/notification/{{notification.id}}"
+						ng-repeat="notification in notifications"> <span class="title">Master
+							document: {{notification.sectionMaster.document.title}} >
+							{{notification.sectionMaster.title}} </span><br> <span>Your
+							version: {{notification.sectionSlave.document.title}} >
+							{{notification.sectionSlave.title}}<br>
+							{{notification.details}}
+					</span>
+					</a>
+				</div>
+			</div>
+			<div class="col l8 m12 z-depth-3 deep-orange lighten-4 black-text"
+				id="middle" ng-controller="mainSectionForHomeController" ng-view>
+
 
 			</div>
-			<div class="col l8 m12 z-depth-3 deep-orange lighten-4 black-text" id="middle" ng-controller="mainSectionForHomeController" ng-app="mainSection" ng-view>
-
-
-			</div>
-			<div class="col l2 m12"><h2>Latest changes:</h2>
-				          <div class="collection black-text">
-        <a href="#!" class="collection-item black-text">Doc1 > Sec4 > Paragraph7</a>
-        <a href="#!" class="collection-item black-text">Doc1 > Sec4 > Paragraph7</a>
-        <a href="#!" class="collection-item black-text">Doc1 > Sec4 > Paragraph7</a>
-        <a href="#!" class="collection-item black-text">Doc1 > Sec4 > Paragraph7</a>
-      </div>
+			<div class="col l2 m12">
+				<h2>Latest changes:</h2>
+				<div class="collection black-text">
+					<a href="#!" class="collection-item black-text">Doc1 > Sec4 >
+						Paragraph7</a> <a href="#!" class="collection-item black-text">Doc1
+						> Sec4 > Paragraph7</a> <a href="#!"
+						class="collection-item black-text">Doc1 > Sec4 > Paragraph7</a> <a
+						href="#!" class="collection-item black-text">Doc1 > Sec4 >
+						Paragraph7</a>
+				</div>
 			</div>
 			<div class="row"></div>
 		</div>
@@ -95,39 +115,37 @@
 
 	<!-- Initialize Quill editor -->
 	<script>
-//   var FontAttributor = Quill.import('attributors/class/font');
-// FontAttributor.whitelist = [
-//   'Roboto'
-// ];
-// Quill.register(FontAttributor, true);
+		//   var FontAttributor = Quill.import('attributors/class/font');
+		// FontAttributor.whitelist = [
+		//   'Roboto'
+		// ];
+		// Quill.register(FontAttributor, true);
 
-// var toolbarOptions = [
-//   ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-//   ['blockquote', 'code-block'],
+		// var toolbarOptions = [
+		//   ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+		//   ['blockquote', 'code-block'],
 
-//   [{ 'header': 1 }, { 'header': 2 }],               // custom button values
-//   [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-//   [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
-//   [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
-//   [{ 'direction': 'rtl' }],                         // text direction
+		//   [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+		//   [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+		//   [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+		//   [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+		//   [{ 'direction': 'rtl' }],                         // text direction
 
-//   [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
-//   [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+		//   [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+		//   [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
 
-//   [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
-//   [{ 'font': ['Roboto'] }],
-//   [{ 'align': [] }],
+		//   [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+		//   [{ 'font': ['Roboto'] }],
+		//   [{ 'align': [] }],
 
-//   ['clean']                                         // remove formatting button
-// ];
+		//   ['clean']                                         // remove formatting button
+		// ];
 
-//   var quill = new Quill('#editor', {
+		//   var quill = new Quill('#editor', {
 
-//   theme: 'snow'
-//   });
-  
-
-</script>
+		//   theme: 'snow'
+		//   });
+	</script>
 
 </body>
 </html>

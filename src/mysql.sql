@@ -12,7 +12,7 @@ CREATE TABLE `sections` (
   `title` varchar(255) DEFAULT NULL,
   `document_id` int(11) DEFAULT NULL,
   `order_number` int(11) DEFAULT NULL,
-  `couch_db_section_id` int(11) DEFAULT NULL,
+  `couch_db_section_id` varchar(255) DEFAULT NULL,
   `previous_version_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_doc` (`document_id`),

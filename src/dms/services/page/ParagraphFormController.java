@@ -15,7 +15,7 @@ import dms.database.DbManager;
 import dms.database.MySQLManager;
 
 @RestController
-public class ParagraphFromController {	
+public class ParagraphFormController {	
 //	@SuppressWarnings("unchecked")
 //	@GetMapping(path = "/documents", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 //	public @ResponseBody List<Document> getDocuments() {

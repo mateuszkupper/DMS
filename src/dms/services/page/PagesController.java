@@ -14,5 +14,15 @@ public class PagesController {
     @RequestMapping(path = "/", method = RequestMethod.GET, produces = "text/html")
     public String displayHome() {
     	return "/home.jsp";
-    }    
+    }
+    
+    @RequestMapping(path = "/doc/{docid}", method = RequestMethod.GET, produces = "text/html")
+    public String displayDocument() {
+    	return "/home.jsp";
+    } 
+    
+    @RequestMapping(path = "/sec/{secid}", method = RequestMethod.GET, produces = "text/html")
+    public String displaySection() {
+    	return "/home.jsp";
+    }     
 }

@@ -2,21 +2,20 @@
 
     mainSection.config(function($routeProvider) {
         $routeProvider
-
-        //for each site eg. documents, section etc
+        
+	        .when('/doc/:id', {
+	            templateUrl : '/DMS/templates/mainSectionForDocument.jsp',
+	            controller  : 'mainSectionForDocumentController'
+	        })        
+        
             .when('/', {
                 templateUrl : '/DMS/templates/mainSectionForHome.jsp',
                 controller  : 'mainSectionForHomeController'
             })
 
-            .when('/about', {
-                templateUrl : 'pages/about.html',
-                controller  : 'aboutController'
-            })
-
-            .when('/contact', {
-                templateUrl : 'pages/contact.html',
-                controller  : 'contactController'
+            .when('/sec/:id', {
+                templateUrl : '/DMS/templates/mainSectionForSection.jsp',
+                controller  : 'mainSectionForSectionController'
             });
     });
     
@@ -28,42 +27,36 @@
             then(function(responseUser) {
                 $scope.documents = responseUser.data;
             });
-        });
-        angular.forEach($scope.documents,function(value,index){
-        	document_id = value.id;
-            $http.get('http://localhost:8080/DMS/document/' + document_id).
-		        then(function(responseDocument) {
-		        	$scope.individual_documents.push(responseDocument.data);
-		        });
-        })
-       
+        });    
     });  
 
+    mainSection.controller('mainSectionForDocumentController', function($scope, $http, $routeParams) {
+        var documentid = $routeParams.id;
+    	$http.get('http://localhost:8080/DMS/document/' + documentid + '/sections').
+        then(function(response) {
+            $scope.sections = response.data;
+            
+            $scope.content = [];
+            $scope.sections.forEach(function(item, index) {
+            	$http.get('http://localhost:8080/DMS/section/' + item.id + '/content').
+                then(function(responseContent) {
+                	$scope.content.push(responseContent.data);
+                    $scope.sectionsAndContent = $scope.sections.map(function(val, index) {
+                        return {
+                            data: val,
+                            value: $scope.content[index]
+                        }
+                    }); 
+                }); 
+             });
 
-
-
-
-//	var notification = angular.module('notifications', ['ngRoute']);
-//
-//    notification.config(function($routeProvider) {
-//        $routeProvider
-//
-//        //for each site eg. documents, section etc
-//            .when('/', {
-//                templateUrl : '/DMS/templates/notificationsForHome.jsp',
-//                controller  : 'notificationsForHomeController'
-//            })
-//
-//            .when('/about', {
-//                templateUrl : 'pages/about.html',
-//                controller  : 'aboutController'
-//            })
-//
-//            .when('/contact', {
-//                templateUrl : 'pages/contact.html',
-//                controller  : 'contactController'
-//            });
-//    });
+        });
+    	
+    	$http.get('http://localhost:8080/DMS/document/' + documentid).
+        then(function(response) {
+            $scope.document = response.data;
+        });
+    }); 
     
    mainSection.controller('notificationsForHomeController', function($scope, $http) {
 		var userid;
@@ -76,4 +69,38 @@
 	    }); 
     });
 
-  
+   mainSection.controller('mainSectionForSectionController', function($scope, $http, $routeParams) {
+       var sectionid = $routeParams.id;   	
+	   var userid;
+       $http.get('http://localhost:8080/DMS/section/' + sectionid).
+       then(function(response) {
+    	   $scope.section = response.data;
+    	   $http.get('http://localhost:8080/DMS/section/' + $scope.section.id + '/content').
+           then(function(responseContent) {
+               $scope.content = responseContent.data;              
+           });
+       });    
+   });     
+   
+   angular.module('ng').filter('cut', function () {
+       return function (value, wordwise, max, tail) {
+           if (!value) return '';
+
+           max = parseInt(max, 10);
+           if (!max) return value;
+           if (value.length <= max) return value;
+
+           value = value.substr(0, max);
+           if (wordwise) {
+               var lastspace = value.lastIndexOf(' ');
+               if (lastspace !== -1) {
+                 if (value.charAt(lastspace-1) === '.' || value.charAt(lastspace-1) === ',') {
+                   lastspace = lastspace - 1;
+                 }
+                 value = value.substr(0, lastspace);
+               }
+           }
+
+           return value + (tail || ' …');
+       };
+   });

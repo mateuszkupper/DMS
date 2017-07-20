@@ -2,6 +2,7 @@ CREATE TABLE `documents` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) DEFAULT NULL,
   `master_id` int(11) DEFAULT NULL,
+  `details` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_master_doc` (`master_id`),
   CONSTRAINT `fk_master_doc` FOREIGN KEY (`master_id`) REFERENCES `documents` (`id`)

@@ -28,7 +28,6 @@ public class Document {
 	@Column(name = "title")
 	private String title;
 	
-	@JsonIgnore
 	@ManyToOne(targetEntity=Document.class)
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@JoinColumn(name="master_id")
@@ -49,18 +48,22 @@ public class Document {
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<Permission> permissions;	
 	
+	@Column(name = "details")
+	private String details;
+	
 	public Document() {
 		
 	}
 	
     public Document(int id, String title, Document masterDocument, Set<Permission> permissions,
-     				Set<Section> sections, Set<Document> slaveDocuments) {
+     				Set<Section> sections, Set<Document> slaveDocuments, String details) {
     	this.id = id;
     	this.title = title;
     	this.masterDocument = masterDocument;
     	this.sections = sections;
     	this.slaveDocuments = slaveDocuments;
     	this.permissions = permissions;
+    	this.details = details;
     }
     
 	public int getId() {
@@ -109,5 +112,13 @@ public class Document {
 
 	public void setPermissions(Set<Permission> permissions) {
 		this.permissions = permissions;
+	}
+
+	public String getDetails() {
+		return details;
+	}
+
+	public void setDetails(String details) {
+		this.details = details;
 	}
 }

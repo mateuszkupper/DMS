@@ -6,6 +6,8 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
 
 <!-- Compiled and minified JavaScript -->
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=EB+Garamond"
@@ -26,6 +28,7 @@
 <script
 	src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
 <script src="${pageContext.request.contextPath}/script/script.js"></script>
+<base href="/">
 </head>
 <body ng-app="mainSection">
 	<div class="col s3 z-depth-3">
@@ -36,7 +39,7 @@
 					<li><a href="/">Home</a></li>
 					<li><a href="/admin">Admin</a></li>
 					<li><a
-						href="DMS//user/<%=SecurityProfile.getUser().getId()%>"><%=SecurityProfile.getUser().getName()%></a></li>
+						href="DMS/user/<%=SecurityProfile.getUser().getId()%>"><%=SecurityProfile.getUser().getName()%></a></li>
 				</ul>
 			</div>
 		</nav>
@@ -60,7 +63,7 @@
 				</div>
 			</div>
 			<div class="col l8 m12 z-depth-3 deep-orange lighten-4 black-text"
-				id="middle" ng-controller="mainSectionForHomeController" ng-view>
+				id="middle" ng-view>
 
 
 			</div>
@@ -114,38 +117,13 @@
 	<script src="https://cdn.quilljs.com/1.2.6/quill.js"></script>
 
 	<!-- Initialize Quill editor -->
+
 	<script>
-		//   var FontAttributor = Quill.import('attributors/class/font');
-		// FontAttributor.whitelist = [
-		//   'Roboto'
-		// ];
-		// Quill.register(FontAttributor, true);
+$(document).ready(function(){
+    $('.collapsible').collapsible();
+  });
+        
 
-		// var toolbarOptions = [
-		//   ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-		//   ['blockquote', 'code-block'],
-
-		//   [{ 'header': 1 }, { 'header': 2 }],               // custom button values
-		//   [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-		//   [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
-		//   [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
-		//   [{ 'direction': 'rtl' }],                         // text direction
-
-		//   [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
-		//   [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-
-		//   [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
-		//   [{ 'font': ['Roboto'] }],
-		//   [{ 'align': [] }],
-
-		//   ['clean']                                         // remove formatting button
-		// ];
-
-		//   var quill = new Quill('#editor', {
-
-		//   theme: 'snow'
-		//   });
-	</script>
-
+</script>
 </body>
 </html>
